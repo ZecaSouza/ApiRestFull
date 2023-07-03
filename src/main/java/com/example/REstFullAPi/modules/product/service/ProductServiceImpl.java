@@ -9,6 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 @Service
 public class ProductServiceImpl implements ProductService {
 
@@ -21,4 +25,13 @@ public class ProductServiceImpl implements ProductService {
         return ResponseEntity.status(HttpStatus.CREATED).body(productRepository.save(productModel));
     }
 
+    public ResponseEntity<List<ProductModel>> getAllProducts(){
+        return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
+    }
+
+    @Override
+    public ResponseEntity<ProductModel> getProduct(UUID id) {
+        Optional<ProductModel> product = productRepository.findById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(product.get());
+    }
 }
