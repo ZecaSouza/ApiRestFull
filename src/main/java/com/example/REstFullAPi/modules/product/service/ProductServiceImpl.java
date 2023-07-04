@@ -34,4 +34,15 @@ public class ProductServiceImpl implements ProductService {
         Optional<ProductModel> product = productRepository.findById(id);
         return ResponseEntity.status(HttpStatus.OK).body(product.get());
     }
+
+    @Override
+    public ResponseEntity<Object> putProduct(UUID id, ProductDTO productDTO) {
+        Optional<ProductModel> product0 = productRepository.findById(id);
+        if(product0.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+        var productModel = product0.get();
+        BeanUtils.copyProperties(productDTO, productModel);
+        return ResponseEntity.status(HttpStatus.OK).body(productRepository.save(productModel));
+    }
 }
