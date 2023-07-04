@@ -40,4 +40,9 @@ public class ProductController {
         return productService.getProduct(id);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> putProduct(@PathVariable(value = "id") UUID id, @Valid @RequestBody ProductDTO productDTO){
+        return productService.putProduct(id, productDTO);
+    }
+
 }

@@ -11,7 +11,8 @@ public interface ProductService {
 
     ResponseEntity<ProductModel> saveProduct(ProductDTO productDTO);
     ResponseEntity<List<ProductModel>> getAllProducts();
-
     ResponseEntity<ProductModel> getProduct(UUID id);
+
+    ResponseEntity<Object> putProduct(UUID id, ProductDTO productDTO);
 
 }
