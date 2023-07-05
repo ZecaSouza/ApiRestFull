@@ -45,4 +45,15 @@ public class ProductServiceImpl implements ProductService {
         BeanUtils.copyProperties(productDTO, productModel);
         return ResponseEntity.status(HttpStatus.OK).body(productRepository.save(productModel));
     }
+
+    @Override
+    public ResponseEntity<Object> deletProduct(UUID id) {
+        Optional<ProductModel> product = productRepository.findById(id);
+        if(product.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
+        }
+        productRepository.delete(product.get());
+        return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully");
+    }
+
 }
