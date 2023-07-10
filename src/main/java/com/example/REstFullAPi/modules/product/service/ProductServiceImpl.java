@@ -2,6 +2,7 @@ package com.example.REstFullAPi.modules.product.service;
 
 import com.example.REstFullAPi.dtos.ProductDTO;
 import com.example.REstFullAPi.models.ProductModel;
+import com.example.REstFullAPi.modules.product.controllers.ProductController;
 import com.example.REstFullAPi.repositories.ProductRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -26,12 +30,23 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public ResponseEntity<List<ProductModel>> getAllProducts(){
-        return ResponseEntity.status(HttpStatus.OK).body(productRepository.findAll());
+        List<ProductModel> productlList = productRepository.findAll();
+        if (!productlList.isEmpty()){
+            for (ProductModel product : productlList){
+                UUID id = product.getIdProduct();
+                product.add(linkTo(methodOn(ProductController.class).getProduct(id)).withSelfRel());
+            }
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(productlList);
     }
 
     @Override
-    public ResponseEntity<ProductModel> getProduct(UUID id) {
+    public ResponseEntity<Object> getProduct(UUID id) {
         Optional<ProductModel> product = productRepository.findById(id);
+        if (product.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("NOT_FOUND");
+        }
+        product.get().add(linkTo(methodOn(ProductController.class).getAllProduct()).withSelfRel());
         return ResponseEntity.status(HttpStatus.OK).body(product.get());
     }
 
