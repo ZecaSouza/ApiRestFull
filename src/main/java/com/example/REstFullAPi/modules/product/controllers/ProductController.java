@@ -26,26 +26,31 @@ public class ProductController {
     ProductService productService;
 
     @PostMapping()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<ProductModel> saveProduct(@RequestBody @Valid ProductDTO productDTO){
         return productService.saveProduct(productDTO);
     }
 
     @GetMapping()
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<List<ProductModel>> getAllProduct(){
         return productService.getAllProducts();
     }
 
     @GetMapping("/{id}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     public ResponseEntity<Object> getProduct(@PathVariable(value = "id") UUID id ){
         return productService.getProduct(id);
     }
 
     @PutMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:5173/", allowedHeaders = "*")
     public ResponseEntity<Object> putProduct(@PathVariable(value = "id") UUID id, @Valid @RequestBody ProductDTO productDTO){
         return productService.putProduct(id, productDTO);
     }
 
     @DeleteMapping("{id}")
+    @CrossOrigin(origins = "http://localhost:5173/", allowedHeaders = "*")
     public ResponseEntity<Object> deletProduct(@PathVariable(value = "id") UUID id){
         return productService.deletProduct(id);
     }
