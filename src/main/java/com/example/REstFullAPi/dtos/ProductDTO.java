@@ -8,8 +8,10 @@ import java.math.BigDecimal;
 public record ProductDTO(
         @NotBlank
         String name,
-        @NotNull
-        BigDecimal value
+        @NotBlank
+        String image,
+        @NotBlank
+        Integer price
 ) {
 
 
