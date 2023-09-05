@@ -20,8 +20,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
     ProductRepository productRepository;
+
+    public ProductServiceImpl( ProductRepository productRepository){
+        this.productRepository = productRepository;
+    }
 
     public ResponseEntity<ProductModel> saveProduct(ProductDTO productDTO) {
         var productModel = new ProductModel();
