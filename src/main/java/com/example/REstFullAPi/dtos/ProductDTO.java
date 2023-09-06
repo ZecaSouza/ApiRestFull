@@ -11,9 +11,7 @@ public record ProductDTO(
         @NotBlank
         String image,
         @NotBlank
-        Integer price
-) {
-
-
+        Double price
+){
 
 }

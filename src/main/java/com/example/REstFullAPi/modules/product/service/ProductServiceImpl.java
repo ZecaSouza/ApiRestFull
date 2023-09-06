@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public ResponseEntity<ProductModel> saveProduct(ProductDTO productDTO) {
-        var productModel = new ProductModel();
+        var productModel = new ProductModel(productDTO);
         BeanUtils.copyProperties(productDTO, productModel);
         return ResponseEntity.status(HttpStatus.CREATED).body(productRepository.save(productModel));
     }

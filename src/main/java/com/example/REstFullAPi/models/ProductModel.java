@@ -1,6 +1,8 @@
 package com.example.REstFullAPi.models;
 
+import com.example.REstFullAPi.dtos.ProductDTO;
 import jakarta.persistence.*;
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serializable;
@@ -18,6 +20,18 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     private String name;
     private String image;
     private BigDecimal value;
+
+    public ProductModel(String name, String image, Double value){
+        this.name = name;
+        this.image = image;
+        this.value = BigDecimal.valueOf(value.doubleValue());
+    }
+
+    public  ProductModel(ProductDTO productDTO){
+        this.name = productDTO.name();
+        this.image = productDTO.image();
+        this.value = BigDecimal.valueOf(productDTO.price());
+    }
 
     public UUID getIdProduct() {
         return idProduct;
@@ -51,4 +65,8 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
         this.value = value;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return EqualsBuilder.reflectionEquals(obj, this);
+    }
 }
