@@ -19,18 +19,18 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     private UUID idProduct;
     private String name;
     private String image;
-    private BigDecimal value;
+    private BigDecimal price;
 
     public ProductModel(String name, String image, Double value){
         this.name = name;
         this.image = image;
-        this.value = BigDecimal.valueOf(value.doubleValue());
+        this.price = BigDecimal.valueOf(value.doubleValue());
     }
 
     public  ProductModel(ProductDTO productDTO){
         this.name = productDTO.name();
         this.image = productDTO.image();
-        this.value = BigDecimal.valueOf(productDTO.price());
+        this.price = productDTO.price();
     }
 
     public UUID getIdProduct() {
@@ -58,11 +58,11 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     }
 
     public BigDecimal getValue() {
-        return value;
+        return price;
     }
 
     public void setValue(BigDecimal value) {
-        this.value = value;
+        this.price = price;
     }
 
     @Override
