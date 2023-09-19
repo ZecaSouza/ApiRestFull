@@ -11,9 +11,17 @@ public record ProductDTO(
         @NotBlank
         String image,
         @NotBlank
-        Integer price
-) {
+        BigDecimal price
+){
+        public String getName() {
+                return name;
+        }
 
+        public String getImage() {
+                return image;
+        }
 
-
+        public BigDecimal getPrice() {
+                return price;
+        }
 }
