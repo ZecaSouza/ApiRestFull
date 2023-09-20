@@ -12,7 +12,7 @@ public record ProductDTO(
         String image,
         @NotBlank
         String description,
-        @NotBlank
+        @NotNull
         BigDecimal price
 ){
         public String getName() {

@@ -2,6 +2,7 @@ package com.example.REstFullAPi.models;
 
 import com.example.REstFullAPi.dtos.ProductDTO;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "TB_PRODUCTS")
 public class ProductModel extends RepresentationModel<ProductModel> implements Serializable {
     private static final long serialVersionUID = 1L;
