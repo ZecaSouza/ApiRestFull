@@ -2,6 +2,7 @@ package com.example.REstFullAPi.models;
 
 import com.example.REstFullAPi.dtos.ProductDTO;
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -10,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "TB_PRODUCTS")
 public class ProductModel extends RepresentationModel<ProductModel> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -19,11 +21,13 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     private UUID idProduct;
     private String name;
     private String image;
+    private String description;
     private BigDecimal price;
 
-    public ProductModel(String name, String image, Double value){
+    public ProductModel(String name, String image,String description, Double value){
         this.name = name;
         this.image = image;
+        this.description = description;
         this.price = BigDecimal.valueOf(value.doubleValue());
     }
 
@@ -55,6 +59,14 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
 
     public String getImage() {
         return image;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal getValue() {
