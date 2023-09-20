@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/api/products/v1")
 @Validated
 public class ProductController {
 

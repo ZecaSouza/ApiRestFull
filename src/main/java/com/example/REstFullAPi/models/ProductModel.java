@@ -19,11 +19,13 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
     private UUID idProduct;
     private String name;
     private String image;
+    private String description;
     private BigDecimal price;
 
-    public ProductModel(String name, String image, Double value){
+    public ProductModel(String name, String image,String description, Double value){
         this.name = name;
         this.image = image;
+        this.description = description;
         this.price = BigDecimal.valueOf(value.doubleValue());
     }
 
@@ -55,6 +57,14 @@ public class ProductModel extends RepresentationModel<ProductModel> implements S
 
     public String getImage() {
         return image;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal getValue() {

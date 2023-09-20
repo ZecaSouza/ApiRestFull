@@ -11,6 +11,8 @@ public record ProductDTO(
         @NotBlank
         String image,
         @NotBlank
+        String description,
+        @NotBlank
         BigDecimal price
 ){
         public String getName() {
@@ -20,6 +22,8 @@ public record ProductDTO(
         public String getImage() {
                 return image;
         }
+
+        public String getDescription() { return description; }
 
         public BigDecimal getPrice() {
                 return price;
