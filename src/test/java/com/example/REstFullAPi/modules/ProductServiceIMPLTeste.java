@@ -22,7 +22,7 @@ public class ProductServiceIMPLTeste {
 
         assertThat(sut.getName()).isEqualTo(ProductConstants.PRODUCT_MODEL.getName());
         assertThat(sut.getImage()).isEqualTo(ProductConstants.PRODUCT_MODEL.getImage());
-        assertThat(sut.getImage()).isEqualTo(ProductConstants.PRODUCT_MODEL.getDescription());
+        assertThat(sut.getDescription()).isEqualTo(ProductConstants.PRODUCT_MODEL.getDescription());
         assertThat(sut.getValue()).isEqualTo(ProductConstants.PRODUCT_MODEL.getPrice());
 
     }
